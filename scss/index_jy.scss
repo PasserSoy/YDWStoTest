@@ -1,0 +1,101 @@
+// 导航栏
+.info {
+  position: relative;
+  height: 90px;
+  background: linear-gradient(to right,#2492f6,#39aeec,#53cee0);
+  background: url('../images/index/back.png') no-repeat;
+  background-size: 100% 100%;
+  .info_all {
+    width: auto;
+    display: flex;
+    .info_r {// 用户名
+      position: absolute;
+      left: 30px;
+      left: 3vw;
+      top: 0;
+      width: auto;
+      float: none;
+      .img_info {
+        width: auto;
+        float: none;
+      }
+      span {
+        display: inline;
+        padding: 0 3px;
+        font-size: 13px;
+      }
+      div {
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+    .guzhang {// 修改密码、退出
+      position: absolute;
+      right: 30px;
+      right: 3vw;
+      top: 0;
+      width: auto;
+      background-color: transparent;
+      height: 40px;
+      line-height: 40px;
+      a {
+        color: #3090b3;
+        cursor: pointer;
+        font-size: 13px;
+        padding: 2px 0;
+        padding-left: 21px;
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 1px;
+          width: 16px;
+          height: 16px;
+          background: url('../images/index/index.png') 0 0 no-repeat;
+        }
+        &#Exit_system {// 退出
+          margin-left: 20px;
+          &::before {
+            background-position: 0 -18px;
+          }
+        }
+      }
+    }
+    .info_l {// logo
+      margin: 20px auto 0;
+      font-size: 24px;
+      font-weight: 500;
+      text-shadow: 1px 3px 3px #333;
+      font-family: 'microsoft yahei';
+    }
+  }
+}
+// 菜单
+.two_header {
+  height: auto;
+  ul {
+    height: auto;
+    .active {
+      border-bottom: 0;
+      background-color: #2494f9;
+      a:focus {
+        text-decoration: none;
+      }
+      label {
+        color: #fff;
+      }
+    }
+    label {
+      margin-bottom: 0;
+      padding: 6px 0;
+      font-weight: normal;
+      color: #333;
+    }
+  }
+  .public {
+    img {
+      display: none;
+    }
+  }
+}

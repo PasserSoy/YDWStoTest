@@ -1,0 +1,63 @@
+* {
+  font-family: Arial, "微软雅黑";
+}
+
+html {
+  /* background: url(images/one/0.3.png) no-repeat center center fixed; */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #ecf1f5;
+}
+
+#main {
+  width: 500px;
+  height: 400px;
+  margin: 10% auto;
+  padding-top: 60px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #2494f9;
+}
+
+h1 {
+  font-size: 30px;
+  color: #333;
+  padding: 10px;
+  text-align: center;
+}
+
+input {
+  height: 48px;
+  width: 365px;
+  padding-left: 33px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+input:-webkit-autofill {
+  box-shadow: 0 0 0 400px #fff inset;
+  /* -webkit-text-fill-color: #666666; */
+}
+.login_username,.login_password,.submit_btnsd {position: relative;margin: 3% 10%;}
+.login_username i,.login_password i {
+  position: absolute;left: 3px;top: 0;height: 100%;width: 26px;
+}
+.login_username i {background: url('../../images/one/0.1.png') 0 11px no-repeat;}
+.login_password i {background: url('../../images/one/0.2.png') 0 11px no-repeat;}
+
+.submit_btns {
+  background-color: #2494f9;
+  color: #ffffff;
+  width: 400px;
+  height: 50px;
+  margin-bottom: 3%;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.forgetpw {
+  width: 400px;
+  display: inline-block;
+  text-align: right;
+}

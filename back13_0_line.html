@@ -1,0 +1,689 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="pragma" content="no-cache"/>
+  <meta http-equiv="Cache-Control" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="assets/css/bootstrap.min.css?v=1.0.0" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=1.0.0"/>
+  <link href="assets/css/codemirror.css?v=1.0.0" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/ace.min.css?v=1.0.0" />
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css?v=1.0.0" />
+  <link rel="stylesheet" href="font/css/font-awesome.min.css?v=1.0.0" />
+  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css?v=1.0.0" />
+  <script src="assets/js/jquery.min.js?v=1.0.0"></script>
+  <link rel="stylesheet" href="assets/css/ace-ie.min.css?v=1.0.0" />
+  <link rel="stylesheet" href="assets/layui/css/layui.css?v=1.0.0" />
+  <link rel="stylesheet" href="css/power/manager.css?v=1.0.0" />
+  <link rel="stylesheet" href="css/power/base.css?v=1.0.0" />
+  <script src="assets/js/typeahead-bs2.min.js?v=1.0.0"></script>
+  <script src="assets/layer/layer.js?v=1.0.0" type="text/javascript" ></script>
+  <script src="assets/layui/layui.all.js?v=1.0.0" type="text/javascript" ></script>
+  <script src="assets/js/html5shiv.js?v=1.0.0" type="text/javascript" ></script>
+  <script src="js/echarts4.min.js?v=1.0.0"></script>
+  <link rel="stylesheet" href="css/mytest2.css?v=1.0.0">
+  <title>line</title>
+
+  <style>
+    body {/* width: 1000px; */margin: auto;/* background-color: #f9f6f1; */}
+    *{
+      font-family: Arial, "微软雅黑";
+    }
+    #line{
+      box-sizing: border-box;
+      background: #ecf1f5;
+    }
+    
+    /* .element::-webkit-scrollbar {
+      display: none !important;
+    } */
+
+    .line_top,
+    .line_center,
+    .line_bottom {
+      background: white;
+      margin: 5px 0;
+    }
+
+    .line_title {
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      margin: 0;
+    }
+
+    .line_top p,
+    .line_center p{
+      padding: 10px;
+      color: gray;
+      border-bottom: solid 1px #ccc;
+    }
+
+    .line_top_content{
+      width: 100%;
+      height: 100px;
+      padding: 0;
+      display: flex;
+    }
+
+    .line_bottom p{
+      height: 40px;
+      line-height: 40px;
+      color: gray;
+    }
+
+    .line_bottom_electricity,
+    .line_bottom_voltage{
+      width: 100%;
+      height: 300px;
+      /* border: solid 1px red; */
+    }
+    .back:hover,
+    .back {
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background: #2494f9;
+      color: white !important;
+      border-radius: 3px;
+      margin-right: 20px;
+    }
+    .config .contact .tool .cable {margin-top: 0;}
+    /* .line_center_content {height: 300px;} */
+    /* .cabinet .configname {padding: 0; color: #fff; border-bottom: 0;} */
+    .config .pt .ptname {padding: 0;border-bottom: 0;}
+    #line-detail {display: -webkit-flex;display: flex;}
+  </style>
+</head>
+
+<body style="overflow: hidden;">
+<div id="line">
+  <div class="line_title">
+    <ul class="navigation_l">
+      <li class="title" id="first_li">
+        <a href="back11_pandect.html?v=1.0.0" class="back">
+          < 返回</a>
+      </li>
+      <li class="title">
+        <a href="back11_pandect.html?v=1.0.0">总览</a>
+        <span>></span>
+      </li>
+      <li class="title">
+        <a class="stationName" href="javascript:void(0);">徐州供电公司A区</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="line_top">
+    <p class="stationName">苏州供电公司XXX区</p>
+    <ul class="line_top_content">
+      <li class="li-fault">
+        <i></i>
+        <div>
+          <span class="line-fault">0</span>
+          <span>故障线路</span>
+        </div>
+      </li>
+      <li class="li-line">
+        <i></i>
+        <div>
+          <span class="line-total">0</span>
+          <span>线路总数</span>
+        </div>
+      </li>
+      <li class="li-point">
+        <i></i>
+        <div>
+          <span class="point-total">0</span>
+          <span>监测设备总数</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="line_center">
+    <!-- <a href="back13_2_line_pointFaultInfo.html">链接跳转</a> -->
+    <p>线路详情</p>
+    <div class="myline">
+      <h3 class="tab"><span class="active" data-id="line-chart">线路图</span><span data-id="line-table">线路表</span></h3>
+      <!-- 一次接线图 -->
+      <div id="line-chart" class="line_center_content tab-child" style="position:relative;">
+        <!-- <canvas id="myCanvas" width="3000" height="300">您的浏览器暂不支持canvas,请用其他浏览器试试吧~</canvas> -->
+        <div class="loadingD">
+          <div class="loadC"></div>
+          <p>正在请求数据...</p>
+        </div>
+        <!-- 全屏显示一线图 -->
+        <span class="no-screen full-screen" title="点击全屏" alt="点击全屏"></span>
+        <h2 class="title"></h2>
+        <!-- <h2 class="title"></h2> -->
+        <div id="line-detail" class="nofull">
+          <div class="line-content">
+            <!-- <h2 class="title"></h2> -->
+            <ul class="cabinet"></ul>
+            <ul class="hide"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- 接线表 -->
+      <div id="line-table" class="tab-child">
+        <!-- 监测站下有多条母线 -->
+        <h4 class="monitor-name">监测站</h4>
+        <!-- 母线集合 -->
+        <ul class="momline-collect"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="line_bottom">
+    <p>
+      母线：
+      <select name="node" id="node" style="background-color: #FCE6DA;">
+        <!--<option value="0">00000000</option>
+        <option value="1">11111111</option>
+        <option value="2">22222222</option>
+        <option value="3">33333333</option>-->
+      </select>
+    </p>
+    <!--<p>电流有效值</p>-->
+    <div id="line_bottom_electricity" class="line_bottom_electricity"></div>
+    <!--<p>电压有效值</p>-->
+    <div  id="line_bottom_voltage" class="line_bottom_voltage"></div>
+  </div>
+</div>
+<!-- 全屏显示一线图 -->
+<!-- <div id="line-detail" class="full">
+	<span class="no-screen" title="退出全屏"></span>
+	<ul class="cabinet"></ul>
+	<ul class="hide"></ul>
+</div> -->
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js?v=1.0.0"></script>
+<script src="js/common.js?v=1.0.1"></script>
+<script src="js/line-detail.js?v=1.0.3"></script>
+<script>
+
+  var deviceId ;
+  $('.stationName').text(sessionStorage.stationName)
+//   $.ajax({
+//     url: rooturl+'/sys/monitorStation/queryMonitorStation.v1',
+//     type: 'post',
+//     data: {
+//       token: sessionStorage.token,
+//       monitorStationId: sessionStorage.monitorStationId,
+//       flag: 'three'
+//     },
+//     success: function (res) {
+//       //  线路条数和故障次数
+//       $('.line_top_content_border').text(res.data.list[0].totalProblem);
+//       $('.line_top_content_green').text(res.data.list[0].totalLines);
+
+//       // 拼接母线
+//       var linesOnMasterDtosList = res.data.list[0].linesOnMasterSortList;
+//       var html = '';
+//       for (let k=0; k< linesOnMasterDtosList.length; k++) {
+//         if (linesOnMasterDtosList[k].monitorFlag) {
+//          html += '<option value="'+linesOnMasterDtosList[k].monitorFlag+'">'+linesOnMasterDtosList[k].masterName+'</option>';
+//         }
+// //        console.log(linesOnMasterDtosList[k].monitorFlag)
+//         }
+//       $('#node').append(html);
+
+
+
+//       //  图表格展示数据
+//       deviceId  =  $('select[name="node"]').val();
+// //      alert(deviceId)
+//       getStatisticsElectricData(deviceId);  // 电流
+//       getStatisticsEricVoltageData(deviceId);// 电压
+//       Statistics_btn();
+
+
+
+//       // Canvas 画图
+// //       var c = document.getElementById("myCanvas");
+// //       var ctx = c.getContext("2d");
+// //       let totalLength = 0;  //记录母线总长度
+
+// //       for (let j=0; j< res.data.list[0].linesOnMasterSortList.length; j++) {
+
+// //         let arr = res.data.list[0].linesOnMasterSortList[j].linesOnBranchDtos;  //支线数组
+// //         let nextMasterIdBol = res.data.list[0].linesOnMasterSortList[j].relatedType=='母线关联' ? true : false;  //是否有关联母线
+        
+// //         let moveTotal;  // 母线的平移量
+// //         moveTotal = totalLength*100;
+
+// //         let lineData = [[moveTotal + 50,50],[moveTotal + 150,50],[moveTotal + 100,50],[moveTotal + 100,250],[moveTotal + 100,250],[moveTotal + 90,240],[moveTotal + 100,250],[moveTotal + 110,240]]
+        
+// //         ctx.fillText(res.data.list[0].linesOnMasterSortList[j].masterName, 60  + moveTotal, 40);  //母线名
+        
+// //         ctx.beginPath();
+// //         ctx.arc(moveTotal+50, 50, 5, 0, 2 * Math.PI);
+// //         // ctx.fillStyle = "red";//填充颜色,默认是黑色
+// //         ctx.fill();//画实心圆
+// //         ctx.stroke();
+
+// //         if (arr.length == 0) {
+// //           ctx.moveTo(lineData[0][0], 50);
+// //           ctx.lineTo(lineData[0][0] + 100, 50);
+// //           ctx.stroke();
+// //           totalLength = totalLength + 2;
+// //         } else {
+// //           totalLength = totalLength + arr.length + 1;
+// //           for (let i=0; i< arr.length; i++) {
+            
+// //             let moveLength = i*100;  // 支线的平移量
+// //             let minArr = arr[i].monitorPointDtos;  //支线信息
+// //             let minArrData = [];  //支线编号
+// //             for (let i=0; i<minArr.length; i++) {
+// //               minArrData.push(minArr[i].monitorFlag);
+// //             }
+// //             // console.log(minArrData)
+// //             // 故障母线画成红色
+// //             if (res.data.list[0].linesOnMasterSortList[j].isProblem == 'Y') {
+// //               ctx.stroke();
+// //               ctx.beginPath();
+// //               ctx.strokeStyle = 'red';
+// //               ctx.moveTo(lineData[0][0]+moveLength, lineData[0][1]);
+// //               ctx.lineTo(lineData[1][0]+moveLength, lineData[1][1]);
+// //               ctx.stroke();
+
+// //               $("#myCanvas").click(function () {
+// //                 //标准的获取鼠标点击相对于canvas画布的坐标公式
+// //                 var x = event.pageX - c.getBoundingClientRect().left;
+// //                 var y = event.pageY - c.getBoundingClientRect().top;
+// //                 // console.log(lineData[0][0] + moveLength, lineData[0][1]);
+// //                 // console.log(lineData[1][0] + moveLength, lineData[1][1]);
+// //                 // console.log(lineData[2][0] + moveLength, lineData[2][1]);
+// //                 // console.log(lineData[3][0] + moveLength, lineData[3][1]);
+// //                 // console.log(x);
+// //                 // console.log(y);
+// //                 // console.log(x >= lineData[0][0] + moveLength)
+// //                 // console.log(x <= lineData[1][0] + moveLength)
+// //                 // console.log(y >= lineData[2][1])
+// //                 // console.log(y <= lineData[3][1]+200)
+// //                 if (x >= lineData[0][0] + moveLength && x <= lineData[1][0] + moveLength && y >= lineData[0][1] - 10 && y <= lineData[0][1] + 10) {
+// //                   console.log(res.data.list[0].linesOnMasterSortList[j].monitorFlag)
+// //                   window.parent.$("#iframepage").attr("src", 'back13_1_line_masterFaultInfo.html?monitorFlag=' + res.data.list[0].linesOnMasterSortList[j].monitorFlag + '&isSolve=false' + '&masterName='+encodeURI(res.data.list[0].linesOnMasterSortList[j].masterName));
+// //                   // location.href = 'back13_2_line_pointFaultInfo.html?id=' + arr[i].id;
+// //                 }
+// //               });
+// //             } else {
+// //               ctx.stroke();
+// //               ctx.beginPath();
+// //               ctx.moveTo(lineData[0][0]+moveLength, lineData[0][1]);
+// //               ctx.lineTo(lineData[1][0]+moveLength, lineData[1][1]);
+// //               ctx.stroke();
+// //             }
+// //             ctx.beginPath();
+// //             ctx.strokeStyle = 'black';
+
+// //             $("#myCanvas").click(function () {
+// //               //标准的获取鼠标点击相对于canvas画布的坐标公式
+// //               var x = event.pageX - c.getBoundingClientRect().left;
+// //               var y = event.pageY - c.getBoundingClientRect().top;
+// //               // console.log(lineData[0][0] + moveLength, lineData[0][1]);
+// //               // console.log(lineData[1][0] + moveLength, lineData[1][1]);
+// //               // console.log(lineData[2][0] + moveLength, lineData[2][1]);
+// //               // console.log(lineData[3][0] + moveLength, lineData[3][1]);
+// //               // console.log(x);
+// //               // console.log(y);
+// //               // console.log(x >= lineData[0][0] + moveLength)
+// //               // console.log(x <= lineData[1][0] + moveLength)
+// //               // console.log(y >= lineData[2][1])
+// //               // console.log(y <= lineData[3][1]+200)
+// //               if (x >= lineData[0][0] + moveLength + 40 && x <= lineData[1][0] + moveLength - 40 && y >= lineData[2][1] + 20 && y <= lineData[3][1]+200) {
+// //                 // console.log(arr[i].id)
+// //                 window.parent.$("#iframepage").attr("src", 'back13_2_line_pointFaultInfo.html?id=' + arr[i].id);
+// //                 // location.href = 'back13_2_line_pointFaultInfo.html?id=' + arr[i].id;
+// //               }
+// //             });
+
+// //             ctx.moveTo(lineData[2][0]+moveLength, lineData[2][1]);
+// //             ctx.lineTo(lineData[3][0]+moveLength, lineData[3][1]);
+
+// //             ctx.moveTo(lineData[4][0]+moveLength, lineData[4][1]);
+// //             ctx.lineTo(lineData[5][0]+moveLength, lineData[5][1]);
+
+// //             ctx.moveTo(lineData[6][0]+moveLength, lineData[6][1]);
+// //             ctx.lineTo(lineData[7][0]+moveLength, lineData[7][1]);
+
+// //             $.ajax({
+// //               url: rooturl+'/eric/getActionCount.v1',
+// //               type: 'post',
+// //               data: {
+// //                 token: sessionStorage.token,
+// //                 sensorIds: minArrData.join(',')
+// //               },
+// //               success: function (res) {
+// //                 if (res.data && res.data.length) {
+// //                   for (let i=0; i<res.data.length; i++) {
+// //                     // 支线下面的三个数值
+// //                     if (i == 0) {
+// //                       ctx.fillText(res.data[i].count, 95 + moveLength + moveTotal, 260);
+// //                     } else if (i == 1) {
+// //                       ctx.fillText(res.data[i].count, 95 + moveLength + moveTotal, 270);
+// //                     } else if (i == 2) {
+// //                       ctx.fillText(res.data[i].count, 95 + moveLength + moveTotal, 280);
+// //                     }
+// //                   }
+// //                 }
+// //               }
+// //             })
+// //             // ctx.rotate(90 * Math.PI / 180);
+// //             // console.log(arr[i].branchName)
+// //             for (let k =0; k< arr[i].branchName.length; k++) {
+// //               let text = arr[i].branchName.charAt(k);
+// //               // console.log(text);
+// //               ctx.fillText(text, 50 + moveLength + moveTotal + 36, 90 + (k * 15));  //支线名
+// //             }
+// //             ctx.stroke();
+// //           }
+// //         }
+        
+// //         var flag;
+// //         if (j != 0) {
+// //           // console.log(nextMasterIdBol)
+
+// // //          if (!flag) {
+// //           if (!nextMasterIdBol) {
+            
+// //             ctx.moveTo(lineData[0][0]-210 + 110, 100-50);
+// //             ctx.lineTo(lineData[0][0]-210 + 120, 100-50);
+
+// //             ctx.moveTo(lineData[0][0]-210 + 110, 100-50);
+// //             ctx.lineTo(lineData[0][0]-210 + 110, 70-50);
+
+// //             ctx.moveTo(lineData[0][0]-210 + 110, 70-50);
+// //             ctx.lineTo(lineData[0][0]-210 + 150, 70-50);
+
+// //             ctx.moveTo(lineData[0][0]-210 + 150, 70-50);
+// //             ctx.lineTo(lineData[0][0]-210 + 170, 50-50);
+
+// //             ctx.moveTo(lineData[0][0]-210 + 170, 70-50);
+// //             ctx.lineTo(lineData[0][0]-210 + 210, 70-50);
+
+// //             ctx.moveTo(lineData[0][0]-210 + 210, 70-50);
+// //             ctx.lineTo(lineData[0][0]-210 + 210, 100-50);
+
+// //             ctx.moveTo(lineData[0][0]-210 + 210, 100-50);
+// //             ctx.lineTo(lineData[0][0]-210 + 200, 100-50);
+
+// //             ctx.stroke();
+// //           } else {
+// //             ctx.moveTo(lineData[0][0] - 210 + 110, 100 - 50);
+// //             ctx.lineTo(lineData[0][0] - 210 + 210, 100 - 50);
+// //             ctx.stroke();
+// //           }
+// //         }
+// // //          flag = nextMasterIdBol;
+// // //        } else {
+// // //          flag = nextMasterIdBol;
+// // //        }
+
+// //           // console.log(nextMasterIdBol)
+// //           // if (!nextMasterIdBol) {
+
+// //           //   ctx.moveTo(lineData[1][0] - 210 + 110 + 100, 100);
+// //           //   ctx.lineTo(lineData[1][0] - 210 + 120 + 100, 100);
+
+// //           //   ctx.moveTo(lineData[1][0] - 210 + 110 + 100, 100);
+// //           //   ctx.lineTo(lineData[1][0] - 210 + 110 + 100, 70);
+
+// //           //   ctx.moveTo(lineData[1][0] - 210 + 110 + 100, 70);
+// //           //   ctx.lineTo(lineData[1][0] - 210 + 150 + 100, 70);
+
+// //           //   ctx.moveTo(lineData[1][0] - 210 + 150 + 100, 70);
+// //           //   ctx.lineTo(lineData[1][0] - 210 + 170 + 100, 50);
+
+// //           //   ctx.moveTo(lineData[1][0] - 210 + 170 + 100, 70);
+// //           //   ctx.lineTo(lineData[1][0] - 210 + 210 + 100, 70);
+
+// //           //   ctx.moveTo(lineData[1][0] - 210 + 210 + 100, 70);
+// //           //   ctx.lineTo(lineData[1][0] - 210 + 210 + 100, 100);
+
+// //           //   ctx.moveTo(lineData[1][0] - 210 + 210 + 100, 100);
+// //           //   ctx.lineTo(lineData[1][0] - 210 + 200 + 100, 100);
+
+// //           //   ctx.stroke();
+// //           // } else {
+// //           //   ctx.moveTo(lineData[1][0] - 210 + 110 + 100, 100);
+// //           //   ctx.lineTo(lineData[1][0] - 210 + 210 + 100, 100);
+// //           //   ctx.stroke();
+// //           // }
+// //       }
+    
+//     }
+//   })
+
+
+
+
+
+  var Electric_type = 1;
+  // 电流
+  var xAxis_Electric_name=[];
+  var series_Electric_a=[];
+  var series_Electric_b=[];
+  var series_Electric_c=[];
+  var series_Electric_0=[];
+  // 电压
+  var xAxis_voltage_name=[];
+  var series_voltage_a=[];
+  var series_voltage_b=[];
+  var series_voltage_c=[];
+  var series_voltage_0=[];
+
+  // 电流
+  function  getStatisticsElectricData(deviceId){
+    var mydate=new Date();//通过new方法创建对象
+    timeStart = mydate.getFullYear()+'-'+(mydate.getMonth()+1)+'-'+mydate.getDate()+' 00:00:00:000';
+    timeEnd = mydate.getFullYear()+'-'+(mydate.getMonth()+1)+'-'+mydate.getDate()+' 23:59:59:000';
+    var data = {deviceId:deviceId,timeStart:timeStart,timeEnd:timeEnd};
+    xAxis_Electric_name=[];
+    series_Electric_a=[];
+    series_Electric_b=[];
+    series_Electric_c=[];
+    series_Electric_0=[];
+
+    POST("/eric/getEricElectric.v1", data, function (res) {
+      if (res.code == '0') {
+        var day_Arr = res.data;
+        for(var i=0;i<day_Arr.length;i++){
+          xAxis_Electric_name.push(day_Arr[i].time);
+          series_Electric_0.push(day_Arr[i].Electric_0.toFixed(2));
+          series_Electric_a.push(day_Arr[i].Electric_a.toFixed(2));
+          series_Electric_b.push(day_Arr[i].Electric_b.toFixed(2));
+          series_Electric_c.push(day_Arr[i].Electric_c.toFixed(2));
+        }
+      }
+    });
+  }
+
+
+  $('#node').change(function(){
+      deviceId=$('#node option:selected').val()
+      getStatisticsElectricData(deviceId);  // 电流
+      getStatisticsEricVoltageData(deviceId);// 电压
+      Statistics_btn();
+//      alert('deviceId更改后的值为:'+deviceId)
+  })
+
+  // 电压
+  function  getStatisticsEricVoltageData(deviceId){
+    var mydate=new Date();//通过new方法创建对象
+    timeStart = mydate.getFullYear()+'-'+(mydate.getMonth()+1)+'-'+mydate.getDate()+' 00:00:00:000';
+    timeEnd = mydate.getFullYear()+'-'+(mydate.getMonth()+1)+'-'+mydate.getDate()+' 23:59:59:000';
+    var data = {deviceId:deviceId,timeStart:timeStart,timeEnd:timeEnd};
+    xAxis_voltage_name=[];
+    series_voltage_a=[];
+    series_voltage_b=[];
+    series_voltage_c=[];
+    series_voltage_0=[];
+
+    POST("/eric/getEricVoltage.v1", data, function (res) {
+      if (res.code == '0') {
+        var day_Arr = res.data;
+        for(var i=0;i<day_Arr.length;i++){
+          xAxis_voltage_name.push(day_Arr[i].time);
+          series_voltage_0.push(day_Arr[i].voltage_0.toFixed(2));
+          series_voltage_a.push(day_Arr[i].voltage_a.toFixed(2));
+          series_voltage_b.push(day_Arr[i].voltage_b.toFixed(2));
+          series_voltage_c.push(day_Arr[i].voltage_c.toFixed(2));
+        }
+      }
+    });
+  }
+
+
+  function Statistics_btn(){
+              var myChart_line_bottom_electricity = echarts.init(document.getElementById('line_bottom_electricity'));
+              var myChart_line_bottom_voltage = echarts.init(document.getElementById('line_bottom_voltage'));
+              option_one = {
+                color:['#FFCD2D', '#14AE68', '#FB1734', '#333'],
+                title: {
+                  text: '电流有效值',
+                  x:'20',
+                  y:'0'
+                },
+                tooltip: {
+                  trigger: 'axis'
+                },
+                legend: {
+                  data:['A相电流','B相电流','C相电流','3I0电流'],
+                  x:'20px',
+                  y:'30px'
+                },
+                grid: {
+                  left: '3%',
+                  right: '4%',
+                  bottom: '3%',
+                  containLabel: true
+                },
+                toolbox: {
+                  feature: {
+                    saveAsImage: {}
+                  }
+                },
+                xAxis: {
+                  type: 'category',
+                  boundaryGap: false,
+                  axisLabel:{
+                    formatter:function (value, index){
+                      return value.slice(10,-3);
+                    }
+                  },
+                  data: xAxis_Electric_name
+                },
+                yAxis: {
+                  name : '电流(A)',
+                  nameLocation:'end',
+                  type: 'value',
+                  position: 'right',
+                  axisLabel : {
+                    formatter: '{value} A'
+                  }
+                },
+                series: [
+                  {
+                    name:'A相电流',
+                    type:'line',
+                    data:series_Electric_a
+                  },
+                  {
+                    name:'B相电流',
+                    type:'line',
+                    data:series_Electric_b
+                  },
+                  {
+                    name:'C相电流',
+                    type:'line',
+                    data:series_Electric_c
+                  },
+                  {
+                    name:'3I0电流',
+                    type:'line',
+                    data:series_Electric_0
+                  }
+                ]
+              };
+              myChart_line_bottom_electricity.setOption(option_one);
+
+              option_two = {
+                color:['#FFCD2D', '#14AE68', '#FB1734', '#333'],
+                title: {
+                  text: '电压有效值',
+                  x:'20',
+                  y:'0'
+                },
+                tooltip: {
+                  trigger: 'axis'
+                },
+                legend: {
+                  data:['A相电压','B相电压','C相电压','3U0电压'],
+                  x:'20px',
+                  y:'30px'
+                },
+                grid: {
+                  left: '3%',
+                  right: '4%',
+                  bottom: '3%',
+                  containLabel: true
+                },
+                toolbox: {
+                  feature: {
+                    saveAsImage: {}
+                  }
+                },
+                xAxis: {
+                  type: 'category',
+                  boundaryGap: false,
+                  axisLabel:{
+                    formatter:function (value, index){
+                      return value.slice(10,-3);
+                    }
+                  },
+                  data: xAxis_voltage_name
+                },
+                yAxis: {
+                  name: '电压(kV)',
+                  type: 'value',
+                  position: 'right',
+                  show:true,
+                  axisLabel : {
+                    formatter: '{value} kV'
+                  }
+                },
+                series: [
+                  {
+                    name:'A相电压',
+                    type:'line',
+                    data: series_voltage_a
+                  },
+                  {
+                    name:'B相电压',
+                    type:'line',
+                    data:series_voltage_b
+                  },
+                  {
+                    name:'C相电压',
+                    type:'line',
+                    stack: '总量',
+                    data:series_voltage_c
+                  },
+                  {
+                    name:'3U0电压',
+                    type:'line',
+                    data:series_voltage_0
+                  }
+
+                ]
+              };
+              myChart_line_bottom_voltage.setOption(option_two);
+  }
+</script>
+</body>
+</html>

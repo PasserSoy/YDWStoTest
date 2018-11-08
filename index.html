@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
+<head>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta charset="utf-8" />
+    <title>网站后台管理系统 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/css/bootstrap.min.css?v=1.0.0" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css?v=1.0.0" />
+    <!--<link rel="stylesheet" href="assets/css/ace.min.css?v=1.0.0" />-->
+    <link rel="stylesheet" href="assets/layui/css/layui.css?v=1.0.0" />
+
+    <!--<link rel="stylesheet" href="css/style.css?v=1.0.0" />-->
+    <link rel="stylesheet" href="css/power/index.css?v=1.0.0" />
+    <link rel="stylesheet" href="css/index_jy.css?v=1.0.0">
+    <script type="text/javascript" src="js/jquery.min.js?v=1.0.0"></script>
+    <script src="assets/layer/layer.js?v=1.0.0" type="text/javascript"></script>
+    <!--<script src="assets/laydate/laydate.js?v=1.0.0" type="text/javascript"></script>-->
+</head>
+
+<style>
+    *{
+        font-family: Arial, "微软雅黑";
+    }
+    #iframepage {
+        width: 100%;
+        height: 1164px;
+        margin: 0 auto;
+        /* margin-top: 30px; */
+        margin-left: 0px;
+    }
+
+    .nav {
+        /* width: 80%; */
+        width: 1000px;
+        /* height: 800px; */
+        margin: 0 auto;
+        /* background: #33333314; */
+        background: #ecf1f5;
+        width: auto;
+        min-width: 1000px;
+    }
+    body .demo-class .layui-layer-btn a,
+    .layui-layer-title{background:#2494f9;color: white;}
+    .hide {display: none;}
+    .nav.fullscreen {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .version {font-size: 12px;color: #fff;margin-left: 10px;}
+    .nav.navfull {width: auto!important;}
+    .inload {position: fixed; left: 50%; top: 50%; z-index: 9; text-align: center; font-size: 12px;display: none;}
+    .inload p {margin-top: 10px;color: #2494f9;}
+    .changepw {font-size: 15px;color:#fff;display: none;}
+    .changepw:hover {color:#fff;}
+    .layui-layer-setwin .layui-layer-close1 { background-position: -187px -38px; cursor: pointer; }
+</style>
+
+<body>
+
+    <div class="info">
+        <div class="info_all">
+            <div class="info_r">
+                <div class="img_info">
+                   您好！欢迎 <span id="manager"></span >登录
+                </div>
+                <div class="dates">
+                    <span class="date"></span>
+                    <span class="week"></span>
+                    <span class="time"></span>
+                </div>
+            </div>
+
+            <div class="info_l">
+                <span>云电微视安全数据服务系统</span><span class="version">V1.4</span>
+            </div>
+
+           
+            <div class="guzhang">
+                <!-- <img class="infoImg" src="images/two/info-v.png" alt="">
+                故障：<span  class="badge badge-danger findClues_N none" style="cursor: pointer;">0</span> -->
+                <a href="password.html?v=1.0.0" class="changepw admina">修改密码</a>
+                <a href="passwordxj.html?v=1.0.0" class="changepw xja">修改密码</a>
+                <!-- <span style="cursor: pointer;" id="Exit_system"><i class="icon-off"></i>退出</span> -->
+                <a id="Exit_system">退出</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="two_header">
+        <div class="two_header_nav">
+            <ul style="display: flex; justify-content: center;">
+                <li id="back11_pandect">
+                    <a href="javascript:;" class="public">
+                        <img src="images/two/1.5.png" datasrc="back11_pandect.html?v=1.0.0" data-name="总览">
+                        <label>总览</label>
+                    </a>
+                </li>
+                <li id="back2_company">
+                    <a href="javascript:;" class="public">
+                        <img src="images/two/1.4.png" datasrc="back2_company.html?v=1.0.0" data-name="公司信息">
+                        <label>公司信息</label>
+                    </a>
+                </li>
+                <li id="back8_0_FaultGround">
+                    <a href="javascript:;" class="public">
+                        <img src="images/two/1.6.png" datasrc="back8_0_FaultGround.html?v=1.0.0" data-name="报警信息">
+                        <label>报警信息</label>
+                    </a>
+                </li>
+                <li id="back9_1_DailyMasterInfo">
+                    <a href="javascript:;" class="public">
+                        <img src="images/two/1.7.png" datasrc="back9_1_DailyMasterInfo.html?v=1.0.0" data-name="日常监测">
+                        <label>日常监测</label>
+                    </a>
+                </li>
+                <li id="back10_1_statisticsMater">
+                    <a href="javascript:;" class="public">
+                        <img src="images/two/1.8.png" datasrc="back10_1_statisticsMater.html?v=1.0.1" data-name="统计信息">
+                        <label>统计信息</label>
+                    </a>
+                </li>
+                <li id="back7_feedBack">
+                    <a href="javascript:;" class="public">
+                        <img src="images/two/1.9.png" datasrc="back7_feedBack.html?v=1.0.0" data-name="意见反馈">
+                        <label>意见反馈</label>
+                    </a>
+                </li>
+                <li id="back12_version">
+                    <a href="javascript:;" class="public">
+                        <img src="images/two/1.10.png" datasrc="back12_version.html?v=1.0.0" data-name="版本管理">
+                        <label>版本管理</label>
+                    </a>
+                </li>
+                <li id="back1_manager">
+                    <a href="javascript:;" class="public">
+                        <img src="images/two/1.3.png" datasrc="back1_manager.html?v=1.0.0" data-name="管理员">
+                        <label>管理员</label>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button class="hide nofull">nofull</button>
+    <button class="hide full">full</button>
+
+    <!-- 用户列表 内容 -->
+    <div class="nav">
+        <iframe name="ifm" id="iframepage" border="0" src="back1_manager.html" frameborder="0" scrolling="no"></iframe>
+    </div>
+    <div class="inload">
+        <img src="./assets/layer/skin/default/loading-2.gif" alt="loading">
+        <p>正在请求数据...</p>
+    </div>
+
+    <!--js中心区-->
+    <script src="js/common.js?v=1.0.1"></script>
+    <script>
+
+
+        $('.findClues_N').on('click', function(){
+            window.parent.$("#iframepage").attr("src",'back8_2_FaultServerFault.html?v=1.0.0&deviceIds='+sessionStorage.queryServerFaultIds);
+            sessionStorage.navId = 'back1_manager';/*默认点击第一个导航,暂时*/
+            $(window.parent.document).find('.nav').removeClass('navfull');
+            for (let i=0; i<$(".two_header_nav li").length; i++) {
+                if (i == 4) {
+                    $($(".two_header_nav li")[i-1]).addClass('active')
+                } else {
+                    $($(".two_header_nav li")[i-1]).removeClass('active')
+                }
+            }
+        })
+
+        layer.config({
+            skin: 'demo-class'
+        })
+	 $('#manager').text(sessionStorage.account);
+
+    $('#Exit_system').on('click', function(){
+        layer.confirm('是否确定退出系统？', {
+                    btn: ['是','否'] ,//按钮
+                    icon:2,
+                },
+                function loginOut (){
+                    sessionStorage.token = '';
+                    if(sessionStorage.menuTab=="admin"){
+                        window.location.href = 'alogin.html';
+                    }else{
+                        window.location.href = 'login.html';
+                    };
+                    sessionStorage.clear();
+                });
+    });
+
+        init();
+        function init() { /*控制高度*/
+            var html = '<li class="title">  <a href="#"> ' + "管理员" + '</a><span>></span></li>';
+            $('#first_li').after(html);
+
+            /* alert(document.documentElement.clientHeight)*/
+            var whatHeight = document.documentElement.clientHeight - 170;
+            parent.document.getElementById('iframepage').style.height = whatHeight + 'px';
+
+
+            // 获取故障提醒消息的个数和Id
+            queryServerFaultIds();
+
+            //  控制显示
+            if(sessionStorage.account!='admin'){
+                    // $('#back1_manager').hide();
+                    // $('#back7_feedBack').hide();
+                    // $('#back12_version').hide();
+                    $('#back1_manager').remove();
+                    $('#back7_feedBack').remove();
+                    $('#back12_version').remove();
+                    window.parent.$("#iframepage").attr("src",'back2_company.html?v=1.0.0');
+                    $('.two_header_nav li[id="back2_company"]').click();
+                    sessionStorage.navId = 'back2_company';
+                    $('.two_header_nav ul li').css('width','250px')
+            }
+
+        }
+
+        function queryServerFaultIds() {
+            var data = {};
+            POST("/eric/queryServerFaultIds.v1", data, function (res) {
+                if (res.code == '0') {
+                    var result = res.data.list;
+                    var queryServerFaultIds = '';
+                    for(var j = 0;j<result.length;j++){
+                        queryServerFaultIds += result[j]+',';
+                    }
+                    sessionStorage.queryServerFaultIds = queryServerFaultIds;
+                    $('.findClues_N').text(res.data.count);
+                }
+            });
+        }
+
+        // $('.public img').on('click', function () {
+        //     var datasrc = $(this).attr('datasrc');
+        //     $("#iframepage").attr("src", datasrc);
+        //     var click_name = $(this).attr('data-name');
+        //     $('#first_li').next().remove();
+
+        //     var obj = $('.public img').parent().parent()
+        //     var arr = []
+        //     for (var i in obj) {
+        //         arr.push(obj[i]); //属性
+        //     }
+        //     arr.length = 8
+        //     for (var k of arr) {
+        //         $(k).removeClass('active')
+        //     }
+        //     $(this).parent().parent().addClass('active')
+        // });
+
+        $('.two_header_nav li').click(function () {
+            var datasrc = $(this).find('img').attr('datasrc')
+            $("#iframepage").attr("src", datasrc);
+
+            var obj = $('.public img').parent().parent()
+            var arr = []
+            for (var i in obj) {
+                arr.push(obj[i]); //属性
+            }
+            arr.length = 8
+            for (var k of arr) {
+                $(k).removeClass('active')
+            }
+            $(this).addClass('active')
+
+        })
+        
+        $(function(){
+            /*clone导航*/
+            // $('.two_header_nav li a').each(function(){
+            //     var _t = $(this);
+            //     _t.parent('li').append(_t.clone(true));
+            // })
+            var frameH = $(window).height()-125+'px';
+            $('#iframepage').height(frameH);
+            $(window).resize(function(){
+                var frameH = $(window).height()-125+'px';
+                $('#iframepage').height(frameH);
+            });
+            /* 点击按钮取消全屏 */
+            $('button.nofull').click(function(){
+                exitFullScreen();
+            });
+            function exitFullScreen() {
+                var el = document,
+                    cfs = el.cancelFullScreen || el.webkitCancelFullScreen || el.mozCancelFullScreen || el.exitFullScreen,
+                    wscript;
+                if (typeof cfs != "undefined" && cfs) {
+                    cfs.call(el);
+                    return;
+                }
+                if (typeof window.ActiveXObject != "undefined") {
+                    wscript = new ActiveXObject("WScript.Shell");
+                    if (wscript != null) {
+                        wscript.SendKeys("{F11}");
+                    }
+                }
+            }
+            /**全屏 *//* 点击按钮全屏 */
+            $('button.full').click(function(){
+                fullScreen();
+            });
+            function fullScreen() {
+            var el = document.documentElement,
+                rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen,
+                wscript;
+            if(typeof rfs != "undefined" && rfs) {
+                rfs.call(el);
+                return;
+            }
+            if(typeof window.ActiveXObject != "undefined") {
+                wscript = new ActiveXObject("WScript.Shell");
+                if(wscript) {
+                    wscript.SendKeys("{F11}");
+                }
+            }
+            }
+            // 日期
+            getToday();
+            setInterval(x=>{
+                getToday();
+            },1000);
+            function getToday(){
+                var d = new Date();
+                // 处理年月日
+                var y = d.getFullYear(),m = d.getMonth()+1,d1 = d.getDate(); // 年月日
+                var date = `${y}年${m<10?'0'+m:m}月${d1<10?'0'+d1:d1}日`;
+                // 处理周
+                var w = d.getDay(); // 周
+                var weekArr = ['星期天','星期一','星期二','星期三','星期四','星期五','星期六'];
+                var week=weekArr[w];
+                // 处理时分秒
+                var h = d.getHours(),m1 = d.getMinutes(),s = d.getSeconds(); // 时分秒
+                var time = `${h<10?'0'+h:h}:${m1<10?'0'+m1:m1}:${s<10?'0'+s:s}`;
+                $('.dates .date').text(date);
+                $('.dates .week').text(week);
+                $('.dates .time').text(time);
+            }
+        })
+    </script>
+</body>
+
+</html>
