@@ -399,11 +399,6 @@ function Statistics_btn(indexName) {
         bottom: '3%',
         containLabel: true
       },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
-      },
       xAxis: {
         type: 'category',
         boundaryGap: true,
@@ -448,6 +443,7 @@ function Statistics_btn(indexName) {
       ]
     };
     echarts_eric.clear();
+    echarts_eric.resize();
     echarts_eric.setOption(option_one);
   } else if (indexName == 'vol') {
     option_one = {
@@ -470,11 +466,6 @@ function Statistics_btn(indexName) {
         right: '4%',
         bottom: '3%',
         containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
       },
       xAxis: {
         type: 'category',
@@ -519,6 +510,7 @@ function Statistics_btn(indexName) {
       ]
     };
     echarts_vol.clear();
+    echarts_vol.resize();
     echarts_vol.setOption(option_one);
   } else if (indexName == 'eric_xiebo') {
     option_one = {
@@ -541,11 +533,6 @@ function Statistics_btn(indexName) {
         right: '4%',
         bottom: '3%',
         containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
       },
       xAxis: {
         type: 'category',
@@ -594,6 +581,7 @@ function Statistics_btn(indexName) {
       ]
     };
     echarts_eric_xiebo.clear();
+    echarts_eric_xiebo.resize();
     echarts_eric_xiebo.setOption(option_one);
   } else if (indexName == 'vol_xiebo') {
     option_one = {
@@ -616,11 +604,6 @@ function Statistics_btn(indexName) {
         right: '4%',
         bottom: '3%',
         containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
       },
       xAxis: {
         type: 'category',
@@ -668,6 +651,7 @@ function Statistics_btn(indexName) {
       ]
     };
     echarts_vol_xiebo.clear();
+    echarts_vol_xiebo.resize();
     echarts_vol_xiebo.setOption(option_one);
   }
 }
@@ -803,3 +787,12 @@ function init(monitorFlag) {
   // 第一次进来执行温度波形 初始化  organizationData
   $('#' + sessionStorage.tabID).click();
 }
+$(function(){
+  // resize
+  $(window).resize(function () {
+    echarts_eric.resize();
+    echarts_vol.resize();
+    echarts_eric_xiebo.resize();
+    echarts_vol_xiebo.resize();
+  })
+})

@@ -182,6 +182,33 @@ var myChart_mains_one_1 = echarts.init(document.getElementById('mains_one_1'));
 var myChart_mains_two_1 = echarts.init(document.getElementById('mains_two_1'));
 
 function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_U0, xAxis_Wave_IA, xAxis_Wave_IB, xAxis_Wave_IC, xAxis_Wave_IX) {
+  var dataZooms = [{
+      type: 'inside',
+      start: 0,
+      end: 100
+    }, {
+      start: 0,
+      end: 100,
+      handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+      handleSize: '80%',
+      handleStyle: {
+        color: '#fff',
+        shadowBlur: 3,
+        shadowColor: 'rgba(0, 0, 0, 0.6)',
+        shadowOffsetX: 2,
+        shadowOffsetY: 2
+      }
+    }],
+    legends = {
+      x: 20,
+      y: 30
+    },
+    grids = {
+      left: 70,
+      right: 25,
+      bottom: 40,
+      containLabel: true
+    };
   // 电压波形
   option_one = {
     color: ['#FFCD2D', '#14AE68', '#FB1734', '#333'],
@@ -207,22 +234,8 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
         return text;
       }
     },
-    legend: {
-      data: ['A相电压', 'B相电压', 'C相电压'],
-      x: '20px',
-      y: '30px'
-    },
-    grid: {
-      left: 80,
-      right: 25,
-      bottom: 30,
-      containLabel: true
-    },
-    toolbox: {
-      feature: {
-        saveAsImage: {}
-      }
-    },
+    legend: legends,
+    grid: grids,
     xAxis: {
       type: 'category',
       name: ' 时间(ms)',
@@ -246,12 +259,7 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
         }
       }
     },
-    dataZoom: [{
-      // type: 'inside',
-      show: true,
-      start: 0,
-      end: 100
-    }],
+    dataZoom: dataZooms,
     series: [{
         name: 'A相电压',
         type: 'line',
@@ -300,22 +308,8 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
         return text;
       }
     },
-    legend: {
-      data: ['3U0电压'],
-      x: '20px',
-      y: '30px'
-    },
-    grid: {
-      left: '80',
-      right: '25',
-      bottom: '30',
-      containLabel: true
-    },
-    toolbox: {
-      feature: {
-        saveAsImage: {}
-      }
-    },
+    legend: legends,
+    grid: grids,
     xAxis: {
       type: 'category',
       name: ' 时间(ms)',
@@ -339,11 +333,7 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
         }
       }
     },
-    dataZoom: [{
-      show: true,
-      start: 10,
-      end: 50
-    }],
+    dataZoom: dataZooms,
     series: [{
       name: '3U0电压',
       type: 'line',
@@ -377,22 +367,8 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
         return text;
       }
     },
-    legend: {
-      data: ['A相电流', 'B相电流', 'C相电流'],
-      x: '20px',
-      y: '30px'
-    },
-    grid: {
-      left: '80',
-      right: '25',
-      bottom: '30',
-      containLabel: true
-    },
-    // toolbox: {
-    //     feature: {
-    //         saveAsImage: {}
-    //     }
-    // },
+    legend: legends,
+    grid: grids,
     xAxis: {
       type: 'category',
       name: ' 时间(ms)',
@@ -414,11 +390,7 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
         formatter: '{value} A'
       }
     },
-    dataZoom: [{
-      show: true,
-      start: 0,
-      end: 100
-    }],
+    dataZoom: dataZooms,
     series: [{
         name: 'A相电流',
         type: 'line',
@@ -466,22 +438,8 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
         return text;
       }
     },
-    legend: {
-      data: ['3I0电流'],
-      x: '20px',
-      y: '30px'
-    },
-    grid: {
-      left: '80',
-      right: '25',
-      bottom: '30',
-      containLabel: true
-    },
-    // toolbox: {
-    //     feature: {
-    //         saveAsImage: {}
-    //     }
-    // },
+    legend: legends,
+    grid: grids,
     xAxis: {
       type: 'category',
       name: ' 时间(ms)',
@@ -503,11 +461,7 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
         formatter: '{value} A'
       }
     },
-    dataZoom: [{
-      show: true,
-      start: 0,
-      end: 100
-    }],
+    dataZoom: dataZooms,
     series: [{
       name: '3I0电流',
       type: 'line',

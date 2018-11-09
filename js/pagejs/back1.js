@@ -2,15 +2,7 @@ $('.layui-layer-btn0').html("确定");
 
 layer.config({
   skin: 'layui-layer-molv'
-})
-// $.ajax({
-//     url:rooturl+'/back/sysUser/querySysUser.v1',
-//     data:{page:2,rows:1,token:sessionStorage.token},
-//     success:function(data){
-//         console.log('data')
-//         console.log(data);
-//     }
-// });
+});
 var callB = false; // 增加、删除的异步操作
 var mobilePhone = $("#mobilePhone_find").val();
 var account = $("#account_find").val();
@@ -79,43 +71,21 @@ function queryData(data) {
         $(".d_Confirm_Order_div").removeClass('none');
       }
       //分页图标展示
+      var allow = { background: '#2494f9', cursor: 'pointer' },
+          noAllow = { background: '#ccc', cursor: 'default' };
       if ($('.numtotal').text() == '1') {
-        $('.beforPage').css({
-          background: '#ccc',
-          cursor: 'default'
-        })
-        $('.laterPage').css({
-          background: '#ccc',
-          cursor: 'default'
-        })
+        $('.beforPage').css(noAllow);
+        $('.laterPage').css(noAllow);
       } else {
         if ($('.nowpage').text() == '1') {
-          $('.beforPage').css({
-            background: '#ccc',
-            cursor: 'default'
-          })
-          $('.laterPage').css({
-            background: '#2494f9',
-            cursor: 'pointer'
-          })
+          $('.beforPage').css(noAllow);
+          $('.laterPage').css(allow);
         } else if ($('.nowpage').text() == $('.numtotal').text()) {
-          $('.beforPage').css({
-            background: '#2494f9',
-            cursor: 'pointer'
-          })
-          $('.laterPage').css({
-            background: '#ccc',
-            cursor: 'default'
-          })
+          $('.beforPage').css(allow);
+          $('.laterPage').css(noAllow);
         } else {
-          $('.beforPage').css({
-            background: '#2494f9',
-            cursor: 'pointer'
-          })
-          $('.laterPage').css({
-            background: '#2494f9',
-            cursor: 'pointer'
-          })
+          $('.beforPage').css(allow);
+          $('.laterPage').css(allow);
         }
       }
     };
@@ -131,7 +101,6 @@ function queryData(data) {
     callB = true;
   }, true);
 }
-
 
 // 组织查询
 function manageQueryData(nowpage) {

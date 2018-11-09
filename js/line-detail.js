@@ -312,7 +312,7 @@ function onceline(res){
       };
       $('.branch-collect li').each(function(){// 遍历支线，如果没有toShow，就移除此支线
         var toShowLen = $(this).find('table.toShow').length;
-        console.log(toShowLen);
+        // console.log(toShowLen);
         if(toShowLen<1) $(this).remove();
       });
     },

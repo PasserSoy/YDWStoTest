@@ -323,11 +323,13 @@ var requestFullScreen = function (element) {
 		var _h1 = $(window.parent.document).find('.nav').outerHeight();
 		var _h2 = $('.box_title').outerHeight();
 		$('#map').outerHeight(_h1 - _h2);
+		$('#map').outerHeight(720);
 
 		$(window).resize(function(){
 			var _h1 = $(window.parent.document).find('.nav').outerHeight();
 			var _h2 = $('.box_title').outerHeight();
 			$('#map').outerHeight(_h1 - _h2);
+			$('#map').outerHeight(720);
 		})
 
 		$('.allList_ul').on('click','li',function(){

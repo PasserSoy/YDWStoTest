@@ -1,63 +1,68 @@
-* {
-  font-family: Arial, "微软雅黑";
+* { font-family: "微软雅黑"; }
+.back {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 8;
+  background: url('../../images/index/login-back.jpg') no-repeat;
+  background-size: 100% 100%;
 }
-
-html {
-  /* background: url(images/one/0.3.png) no-repeat center center fixed; */
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-color: #ecf1f5;
-}
-
 #main {
-  width: 500px;
-  height: 400px;
-  margin: 10% auto;
-  padding-top: 60px;
-  border-radius: 10px;
-  box-shadow: 0 0 5px #2494f9;
-}
-
-h1 {
-  font-size: 30px;
-  color: #333;
-  padding: 10px;
+  width: 420px;
+  height: 430px;
+  margin: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
   text-align: center;
 }
-
+.login-panel {
+  border-radius: 2px;
+  padding: 70px 0 90px;
+  background-color: rgba(255, 255, 255, 0.28);
+}
+h1 {
+  color: #fff;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
 input {
   height: 48px;
-  width: 365px;
-  padding-left: 33px;
+  width: 340px;
+  padding: 0 20px;
+  margin-bottom: 20px;
   border-radius: 6px;
   border: 1px solid #ddd;
+  color: #333;
 }
 input:-webkit-autofill {
   box-shadow: 0 0 0 400px #fff inset;
-  /* -webkit-text-fill-color: #666666; */
 }
-.login_username,.login_password,.submit_btnsd {position: relative;margin: 3% 10%;}
-.login_username i,.login_password i {
-  position: absolute;left: 3px;top: 0;height: 100%;width: 26px;
-}
-.login_username i {background: url('../../images/one/0.1.png') 0 11px no-repeat;}
-.login_password i {background: url('../../images/one/0.2.png') 0 11px no-repeat;}
-
 .submit_btns {
   background-color: #2494f9;
-  color: #ffffff;
-  width: 400px;
+  color: #fff;
+  width: 382px;
   height: 50px;
-  margin-bottom: 3%;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  display: block;
+  margin: auto;
 }
-
+.submit_btns:hover {opacity: .8;}
 .forgetpw {
-  width: 400px;
-  display: inline-block;
-  text-align: right;
+  color: #fff;
+  float: left;
+  margin: 20px;
+  font-size: 13px;
+}
+.forgetpw:hover {
+  color: #fff;
+  text-decoration: underline;
 }

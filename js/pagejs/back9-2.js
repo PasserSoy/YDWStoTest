@@ -316,11 +316,6 @@ function Statistics_btn(index) {
         bottom: '3%',
         containLabel: true
       },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
-      },
       xAxis: {
         type: 'category',
         boundaryGap: true,
@@ -371,6 +366,7 @@ function Statistics_btn(index) {
       ]
     };
     myChart_mains_temp.clear();
+    myChart_mains_temp.resize();
     myChart_mains_temp.setOption(option_one);
   } else if (index == 'humidity') {
     option_one = {
@@ -394,11 +390,6 @@ function Statistics_btn(index) {
         right: '4%',
         bottom: '3%',
         containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
       },
       xAxis: {
         type: 'category',
@@ -450,6 +441,7 @@ function Statistics_btn(index) {
       ]
     };
     myChart_mains_humidity.clear();
+    myChart_mains_humidity.resize();
     myChart_mains_humidity.setOption(option_one);
   } else if (index == 'leakElec') {
     option_one = {
@@ -468,11 +460,6 @@ function Statistics_btn(index) {
         right: '4%',
         bottom: '3%',
         containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
       },
       xAxis: {
         type: 'category',
@@ -496,6 +483,7 @@ function Statistics_btn(index) {
       }]
     };
     myChart_mains_leakElec.clear();
+    myChart_mains_leakElec.resize();
     myChart_mains_leakElec.setOption(option_one);
   } else if (index == 'acionCount') {
     option_one = {
@@ -513,11 +501,6 @@ function Statistics_btn(index) {
         right: '4%',
         bottom: '3%',
         containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
       },
       xAxis: {
         type: 'category',
@@ -559,6 +542,7 @@ function Statistics_btn(index) {
       }]
     };
     myChart_mains_acionCount.clear();
+    myChart_mains_acionCount.resize();
     myChart_mains_acionCount.setOption(option_one);
   } else if (index == 'newtemper') {
     option_one = {
@@ -577,11 +561,6 @@ function Statistics_btn(index) {
         right: '4%',
         bottom: '3%',
         containLabel: true
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
       },
       xAxis: {
         type: 'category',
@@ -613,6 +592,7 @@ function Statistics_btn(index) {
       }]
     };
     myChart_mains_newtemper.clear();
+    myChart_mains_newtemper.resize();
     myChart_mains_newtemper.setOption(option_one);
   }
 
@@ -949,3 +929,14 @@ function init(monitorFlag) {
     $('.showData #temp').click();
   }
 }
+
+$(function(){
+  // resize
+  $(window).resize(function () {
+    myChart_mains_temp.resize();
+    myChart_mains_humidity.resize();
+    myChart_mains_leakElec.resize();
+    myChart_mains_acionCount.resize();
+    myChart_mains_newtemper.resize();
+  })
+})
