@@ -303,7 +303,7 @@ function onceline(res){
               volT.find('td[data-p='+y+']').text(`${(x[y]-500)/10}`);
             };
             if(y.indexOf('electric')>=0){// 处理泄漏电流数据
-              var elec = x[y]*100;
+              var elec = x[y];
               elec= elec>1000?`${elec/1000} mA`:`${elec} μA`;
               volT.find('td[data-p='+y+']').text(elec);
             };

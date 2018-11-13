@@ -74,9 +74,9 @@ function queryFaultGroundInfoList(data) {
       var dataList = res.data.list;
       var html = '';
       for (var i = 0; i < dataList.length; i++) {
-        html += '<li style="border-left:solid 1px #2494f9; position: relative; padding-left: 20px;">' +
-          '<span style="width: 10px; height: 10px; display: inline-block; background: #2494f9; border-radius:50%; position: absolute; top: -5px; left: -5px;"></span>' +
-          '<label style="WORD-BREAK: break-all; WORD-WRAP: break-word">' + dataList[i].recordMessage + '</label>' +
+        html += '<li class="details">' +
+          '<span></span>' +
+          '<label>' + dataList[i].recordMessage + '</label>' +
           '<label>' + dataList[i].createByName + '&nbsp;&nbsp;&nbsp;' + dataList[i].createTime + '</label>' +
           // '<label>'+dataList[i].createTime+'</label>'+
           '</li>';

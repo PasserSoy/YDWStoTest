@@ -23,7 +23,6 @@ $('#Exit_system').on('click', function () {
       icon: 2,
     },
     function loginOut() {
-      sessionStorage.token = '';
       if (sessionStorage.menuTab == "admin") {
         window.location.href = 'alogin.html';
       } else {
@@ -87,10 +86,10 @@ $('.two_header_nav li').click(function () {
 })
 
 $(function () {
-  var frameH = $(window).height() - 125 + 'px';
+  var frameH = $(window).height() - 119 + 'px';
   $('#iframepage').height(frameH);
   $(window).resize(function () {
-    var frameH = $(window).height() - 125 + 'px';
+    var frameH = $(window).height() - 119 + 'px';
     $('#iframepage').height(frameH);
   });
   /* 点击按钮取消全屏 */

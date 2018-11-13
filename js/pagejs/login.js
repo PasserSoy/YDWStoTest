@@ -17,21 +17,25 @@ function backLogin() {
     password: password
   };
   if (account != '' && password != '') {
+    sessionStorage.token='errorToken';
     POST(url, data, function (res) {
       if (res.code == '0') {
-        layer.alert('登陆成功！', {
-          title: '提示框',
-          icon: 1,
-        });
+        // layer.msg('登陆成功！', {
+        //   icon: 1,
+        // });
         // console.log(res.data)
         sessionStorage.id = res.data.id;
         sessionStorage.account = res.data.account != undefined ? res.data.account : res.data.userName; //登录帐号名
         sessionStorage.token = res.data.token;
         sessionStorage.permission = res.data.permission;
         window.location.href = "index.html?v=1.1.0";
+      }else{// 登录错误
         layer.alert(res.msg, {
           title: '提示框',
           icon: 0,
+        },function(){
+          layer.closeAll();
+          $('#account').focus();
         });
       };
     });

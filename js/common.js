@@ -25,13 +25,10 @@ var POST = function (url, data, func, befback, compback, async = true, err) {
 		success: function (res) {
 			if (res.code == "9997" || res.code == "11002" || res.code == undefined) {
 				window.parent.location.href = sessionStorage.menuTab == "admin" ? 'alogin.html' : 'login.html';
-			}
-			// if(res.code == "11002"){
-			//     window.parent.location.href=sessionStorage.menuTab=="admin"?'alogin.html':'login.html';
-			// };
+			};
 			if (!sessionStorage.token || sessionStorage.token == '' || sessionStorage.token == undefined) {
 				window.parent.location.href = sessionStorage.menuTab == "admin" ? 'alogin.html' : 'login.html';
-			}
+			};
 			func(res);
 			var _h = $('html').height(); /*编辑时同步iframe高度*/
 			window.parent.$('#iframepage').css({
@@ -193,11 +190,14 @@ $(function () {
 	if (sessionStorage.menuTab == "admin") {
 		$('.admina').show();
 	};
+	// 如果token存在且返回的地址存在login或者index
 	// 禁止浏览器回退事件
-	history.pushState(null, null, document.URL);
-	window.addEventListener('popstate', function () {
+	if((sessionStorage.token && window.parent.location.href.indexOf("index") > -1) || location.href.indexOf("login") > -1){
 		history.pushState(null, null, document.URL);
-	});
+		window.addEventListener('popstate', function () {
+			history.pushState(null, null, document.URL);
+		});
+	};
 })
 
 // 监听是否全屏

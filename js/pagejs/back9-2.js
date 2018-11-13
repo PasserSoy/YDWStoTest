@@ -464,6 +464,11 @@ function Statistics_btn(index) {
       xAxis: {
         type: 'category',
         boundaryGap: true,
+        axisLabel: {
+          formatter: function (val) {
+            return val.replace(/\s/gi, '\n');
+          }
+        },
         data: xAxis_time_name
       },
       yAxis: {
