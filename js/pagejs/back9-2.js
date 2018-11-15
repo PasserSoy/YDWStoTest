@@ -117,7 +117,7 @@ $('#acionCount').click(function () {
 
 
 $('#btn-1').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back9_1_DailyMasterInfo.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back9_1_DailyMasterInfo.html?v=1.1.0');
 })
 
 /*用户-查询*/

@@ -326,12 +326,12 @@ function Statistics_btn(index) {
       },
       yAxis: {
         show: true,
-        name: '电流(A)',
+        name: '湿度(%RH)',
         nameLocation: 'end',
         type: 'value',
         position: 'right',
         axisLabel: {
-          formatter: '{value} A'
+          formatter: '{value} %RH'
         }
       },
       series: [{
@@ -586,7 +586,7 @@ function init(monitorFlag) {
 }
 
 $('#btn-2').click(function () {
-  location.href = 'back13_0_line.html?v=1.0.0'
+  location.href = 'back13_0_line.html?v=1.1.0'
 })
 
 $(function(){

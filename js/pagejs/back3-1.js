@@ -4,11 +4,11 @@ layer.config({
 
 $('#companyName').text(sessionStorage.companyName);
 $('#btn-1').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back3_2_MonitorStation.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back3_2_MonitorStation.html?v=1.1.0');
 })
 
 $('#back_to_company').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.1.0');
 })
 var callB = false; // 增加、删除的异步操作
 
@@ -136,26 +136,20 @@ function initSelectOnRoles(memberId) {
     companyId: sessionStorage.companyId,
     memberId: memberId
   };
-  callB = false;
   POST("/sys/monitorStation/queryMonitorStation.v1", data, function (res) {
-    var s = setInterval(x => {
-      if (callB == true) {
-        if (res.code == '0') {
-          var resultList = res.data.list;
-          var selected_dataName = '';
-          for (var i = 0; i < resultList.length; i++) {
-            selected_dataName += '<option  value="' + resultList[i].id + '">' + resultList[i].stationName + '</option>';
-          }
-          $('#select1').append(selected_dataName);
-        };
-        clearInterval(s);
-      };
-    }, 1);
+    if (res.code == '0') {
+      var resultList = res.data.list;
+      var selected_dataName = '';
+      for (var i = 0; i < resultList.length; i++) {
+        selected_dataName += '<option  value="' + resultList[i].id + '">' + resultList[i].stationName + '</option>';
+      }
+      $('#select1').append(selected_dataName);
+    };
   }, function () {
     $('.loadjy').addClass('op');
   }, function () {
     $('.loadjy').removeClass('op');
-  }, true);
+  }, false);
 }
 
 // 组织查询
@@ -220,7 +214,7 @@ function member_del_detail(data, nowpage) {
     }, 1);
   }, function () {
     $('.loadjy').addClass('op');
-  }, '', true);
+  },'', true);
 }
 
 /*用户-添加*/

@@ -47,7 +47,7 @@ $(function(){
     monitorFlag = _this.attr('data-monitorFlag'),
     masterName = _this.attr('data-masterName');
     if(err=='Y'){
-      window.parent.$("#iframepage").attr("src", 'back13_1_line_masterFaultInfo.html?v=1.0.0&monitorFlag=' + monitorFlag + '&isSolve=false' + '&masterName='+encodeURI(masterName));
+      window.parent.$("#iframepage").attr("src", 'back13_1_line_masterFaultInfo.html?v=1.1.0&monitorFlag=' + monitorFlag + '&isSolve=false' + '&masterName='+encodeURI(masterName));
       /**跳转后退出全屏 */
       exitFullScreen();
     };
@@ -448,7 +448,7 @@ function allwidth(){
     if(_this.find('.table table').length>0){
       _this.addClass('mylink');
       _this.click(function(){
-        window.parent.$("#iframepage").attr("src", 'back13_2_line_pointFaultInfo.html?v=1.0.0&id=' + _this.data('link'));
+        window.parent.$("#iframepage").attr("src", 'back13_2_line_pointFaultInfo.html?v=1.1.0&id=' + _this.data('link'));
         /**跳转后退出全屏 */
         exitFullScreen();
       })

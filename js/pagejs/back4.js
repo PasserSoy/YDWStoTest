@@ -9,10 +9,10 @@ if (monitorStationId) {
 
 
 $('.back_to_MonitorStation').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back3_2_MonitorStation.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back3_2_MonitorStation.html?v=1.1.0');
 })
 $('.company_info').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.1.0');
 })
 
 var mobile = '';
@@ -71,7 +71,7 @@ function queryData(data) {
           '<td>' + serial + '</td>' +
           '<td>' + list[i].masterName + '</td>' +
           '<td>' + list[i].preMasterName + '</td>' +
-          '<td><a href="back5_LinesOnBranch.html?v=1.0.0&linesOnMasterId=' + list[i].id + '" class="liveA" data-pow="' + list[i].hitchType + '" data-name="' + list[i].masterName + '">' + list[i].linesOnBranchDtos.length + '</a></td>' +
+          '<td><a href="back5_LinesOnBranch.html?v=1.1.0&linesOnMasterId=' + list[i].id + '" class="liveA" data-pow="' + list[i].hitchType + '" data-name="' + list[i].masterName + '">' + list[i].linesOnBranchDtos.length + '</a></td>' +
           '<td>' + list[i].monitorFlag + '</td>' +
           // '<td>'+line+'</td>'+
           '<td>' + list[i].hitchType + ' kV</td>' +

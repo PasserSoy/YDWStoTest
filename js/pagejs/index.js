@@ -48,6 +48,9 @@ function init() { /*控制高度*/
 
   //  控制显示
   if (sessionStorage.account != 'admin') {
+    $('#back1_manager').remove();
+    $('#back7_feedBack').remove();
+    $('#back12_version').remove();
     $('.two_header_nav ul li').css('width', '250px')
   }
 

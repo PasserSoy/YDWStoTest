@@ -54,7 +54,7 @@ POST("/sys/monitorStation/queryMonitorStation.v1", station, function (res) {
 // 初始化时间赋值
 
 $('#btn-2').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back8_2_FaultServerFault.html?v=1.0.0&deviceIds=' + sessionStorage.queryServerFaultIds);
+  window.parent.$("#iframepage").attr("src", 'back8_2_FaultServerFault.html?v=1.1.0&deviceIds=' + sessionStorage.queryServerFaultIds);
 })
 
 layer.config({
@@ -153,15 +153,13 @@ function queryData(data) {
           '<td style="white-space: nowrap;">' + disposeState + '</td>' +
           //                            '<td><a href="back24_reportYearDetail.html?projectName='+encodeURI(dataList[i].itemName)+'&nowpage='+$(".nowpage").text()+'&limit='+limit+'&sumMoney='+dataList[i].sumMoney+'">'+dataList[i].sumUser+'人</a></td>'+
           '<td class="td-manage">' +
-          '<a dataid = ' + dataList[i].id + ' href="back8_1_FaultGroundInfo.html?v=1.0.1&autoId=' + dataList[i].autoId + '&monitorStationName=' + encodeURI(dataList[i].monitorStationName) + '&masterName=' + encodeURI(dataList[i].masterName) +
+          '<a dataid = ' + dataList[i].id + ' href="back8_1_FaultGroundInfo.html?v=1.1.0&autoId=' + dataList[i].autoId + '&monitorStationName=' + encodeURI(dataList[i].monitorStationName) + '&masterName=' + encodeURI(dataList[i].masterName) +
           '&aname=' + encodeURI(aname) + '&fname=' + encodeURI(fname) + '&type=' + ftype + '&times=' + dataList[i].times.slice(0, -4) + '&devid=' + dataList[i].devid + '&phase=' + dataList[i].phase +
           '" ' + '>查看</a>' +
           '</td>' +
           '</tr>';
       }
       $('#tbody').append(html);
-      var frameH = $(window).height() - 100 + 'px';
-      $('#iframepage').height(frameH);
 
       if ($('.numtotal').text() == '1') {
         $('.beforPage').css({

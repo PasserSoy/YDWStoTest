@@ -22,11 +22,11 @@ if (companyName != 'null') {
 
 $('#companyName').text(sessionStorage.companyName);
 $('#btn-2').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back3_1_MonitorMember.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back3_1_MonitorMember.html?v=1.1.0');
 })
 
 $('#back_to_company').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.1.0');
 })
 
 var callB = false; // 增加、删除的异步操作
@@ -75,7 +75,7 @@ function queryData(data) {
           '<td>' + list[i].stationName + '</td>' +
           '<td>' + list[i].stationAddress + '</td>' +
           '<td>' + list[i].longitudeAndlatitude + '</td>' +
-          '<td><a href="back4_LinesOnMaster.html?v=1.0.0&monitorStationId=' + list[i].id + '">' + list[i].linesOnMasterCount + '</a></td>' +
+          '<td><a href="back4_LinesOnMaster.html?v=1.1.0&monitorStationId=' + list[i].id + '">' + list[i].linesOnMasterCount + '</a></td>' +
           /*'<td><a href="back5_LinesOnBranch.html?monitorStationId="'+list[i].id+'>'+list[i].linesOnBranchCount+'</a></td>'+
           '<td><a href="back6_MonitorPoint.html?monitorStationId="'+list[i].id+'>'+list[i].monitorPointCount+'</a></td>'+*/
           '<td>' + list[i].linesOnBranchCount + '</a></td>' +

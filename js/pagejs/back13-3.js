@@ -6,6 +6,14 @@ var fname = decodeURI(getPropetyVal('fname'));
 var monitorStationName = decodeURI(getPropetyVal('monitorStationName'));
 var times = decodeURI(getPropetyVal('times')) + ':000';
 
+var masterAddress = decodeURI(getPropetyVal('masterAddress'));
+var locations = `<li><span class="tit">故障位置：</span><span class="cont" title="${masterAddress}">${masterAddress}</span></li>`;// 故障位置
+if(masterAddress!=undefined){
+  $('li.times').before(locations);
+};
+var monitorFlag = decodeURI(getPropetyVal('monitorFlag'));// 传回去
+$('#first_li .back').attr('href','back13_1_line_masterFaultInfo.html?v=1.1.0&monitorFlag=' + monitorFlag);
+
 $('#fname').text(fname);
 $('#monitorStationName').text(monitorStationName);
 /*不同的报警类型 图标*/

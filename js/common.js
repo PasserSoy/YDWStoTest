@@ -190,7 +190,7 @@ $(function () {
 	if (sessionStorage.menuTab == "admin") {
 		$('.admina').show();
 	};
-	// 如果token存在且返回的地址存在login或者index
+	// 如果token存在且返回的地址存在index或者存在login
 	// 禁止浏览器回退事件
 	if((sessionStorage.token && window.parent.location.href.indexOf("index") > -1) || location.href.indexOf("login") > -1){
 		history.pushState(null, null, document.URL);

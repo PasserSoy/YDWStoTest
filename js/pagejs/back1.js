@@ -54,7 +54,7 @@ function queryData(data) {
           '<td>' + list[i].password + '</td>' +
           '<td>' + list[i].mobilePhone + '</td>' +
           // '<td>'+list[i].permission+'</td>'+
-          '<td>' + list[i].createTime.substring(0, 10) + '</td>' +
+          '<td>' + list[i].createTime + '</td>' +
           '<td class="td-manage none">' +
           '<a onClick=' + 'member_edit(this,"550")' + ' dataid = ' + list[i].id + '  href="javascript:;" title="管理员编辑" id="edit">' +
           '编辑</a>&nbsp;&nbsp;' +
@@ -264,7 +264,7 @@ $('#member_add').on('click', function () {
   });
 });
 
-function saveOrUpDateInfo(data) {
+function saveOrUpDateInfo(data,nowpage) {
   callB = false;
   POST("/back/sysUser/addOrUpdateSysUser.v1", data, function (res) {
     manageQueryData(nowpage);

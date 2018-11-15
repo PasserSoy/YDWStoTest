@@ -7,16 +7,16 @@ if (linesOnBranchId) {
 }
 
 $('.back_to_MonitorBranch').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back5_LinesOnBranch.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back5_LinesOnBranch.html?v=1.1.0');
 })
 $('.back_to_lineOnmaster').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back4_LinesOnMaster.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back4_LinesOnMaster.html?v=1.1.0');
 })
 $('.back_to_MonitorStation').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back3_2_MonitorStation.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back3_2_MonitorStation.html?v=1.1.0');
 })
 $('.company_info').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.1.0');
 })
 
 
@@ -460,7 +460,7 @@ function member_del(obj, id) {
 }
 
 //删除信息:被引用
-function monitorPoint_del_Info(data) {
+function monitorPoint_del_Info(data,nowpage) {
   callB = false;
   POST("/sys/monitorPoint/deleteMonitorPoint.v1", data, function (res) {
     manageQueryData(nowpage); // 组织条件查询

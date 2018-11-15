@@ -9,13 +9,13 @@ if (linesOnMasterId) {
 }
 
 $('.back_to_lineOnmaster').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back4_LinesOnMaster.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back4_LinesOnMaster.html?v=1.1.0');
 })
 $('.back_to_MonitorStation').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back3_2_MonitorStation.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back3_2_MonitorStation.html?v=1.1.0');
 })
 $('.company_info').on('click', function () {
-  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.0.0');
+  window.parent.$("#iframepage").attr("src", 'back2_company.html?v=1.1.0');
 })
 
 
@@ -82,16 +82,16 @@ function queryData(data) {
         var pointDom = ''; //监测设备
         if (list[i].branchType == 1) {
           branchname = '进线柜';
-          pointDom = `<a href="back6_MonitorPoint.html?v=1.0.0&linesOnBranchId=${list[i].id}">${pointSize}</a>`;
+          pointDom = `<a href="back6_MonitorPoint.html?v=1.1.0&linesOnBranchId=${list[i].id}">${pointSize}</a>`;
         } else if (list[i].branchType == 2) {
           branchname = 'PT柜';
           pointDom = '-';
         } else if (list[i].branchType == 3) {
           branchname = '出线柜';
-          pointDom = `<a href="back6_MonitorPoint.html?v=1.0.0&linesOnBranchId=${list[i].id}">${pointSize}</a>`;
+          pointDom = `<a href="back6_MonitorPoint.html?v=1.1.0&linesOnBranchId=${list[i].id}">${pointSize}</a>`;
         } else if (list[i].branchType == 4) {
           branchname = '联络柜';
-          pointDom = `<a href="back6_MonitorPoint.html?v=1.0.0&linesOnBranchId=${list[i].id}">${pointSize}</a>`;
+          pointDom = `<a href="back6_MonitorPoint.html?v=1.1.0&linesOnBranchId=${list[i].id}">${pointSize}</a>`;
         } else if (list[i].branchType == 5) {
           branchname = '提升柜';
           pointDom = '-';
@@ -110,7 +110,7 @@ function queryData(data) {
           '<td>' + pointDom + '</td>' +
           // '<td><a href="back6_MonitorPoint.html?linesOnBranchId='+list[i].id+'">'+pointSize+'</a></td>'+
           //                            '<td><a href="back6_MonitorPoint.html">'+list[i].monitorPointDtos.length+'</a></td>'+
-          '<td>' + userName + '</td>' + /*list[i].monitorPointDtos.length*/
+          // '<td>' + userName + '</td>' + /*list[i].monitorPointDtos.length*/
           '<td class="td-manage">' +
           '<a onClick=' + 'member_edit(this,"550")' + ' dataId="' + list[i].id + '" dataBranchName="' + list[i].branchName + '"  dataBranchAddress="' + list[i].branchAddress +
           '"  dataLongitudeAndlatitude="' + list[i].longitudeAndlatitude + '"  dataCabin_no="' + list[i].cabin_no + '"  dataBranchType="' + list[i].branchType + '"  dataSensorNumber="' + list[i].sensorNumber + '"  href="javascript:;" title="编辑" id="edit">' +
@@ -483,7 +483,7 @@ function member_del(obj, id) {
 }
 
 //删除信息:被引用
-function linesOnBranch_del_Info(data) {
+function linesOnBranch_del_Info(data,nowpage) {
   callB = false;
   POST("/sys/linesOnBranch/deleteLinesOnBranch.v1", data, function (res) {
     manageQueryData(nowpage); // 组织条件查询

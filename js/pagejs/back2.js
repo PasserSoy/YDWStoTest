@@ -50,7 +50,7 @@ function queryData(data) {
         var serial = (parseInt($(".nowpage").text()) - 1) * parseInt(10) + parseInt(i) + parseInt(1);
         html += '<tr>' +
           '<td>' + serial + '</td>' +
-          '<td><a href="back3_2_MonitorStation.html?v=1.0.0&companyId=' + list[i].id + '&companyName=' + encodeURI(list[i].companyName) + '">' + list[i].companyName + '</a></td>' +
+          '<td><a href="back3_2_MonitorStation.html?v=1.1.0&companyId=' + list[i].id + '&companyName=' + encodeURI(list[i].companyName) + '">' + list[i].companyName + '</a></td>' +
           '<td>' + list[i].companyNameShort + '</td>' +
           '<td>' + list[i].companyAddress + '</td>' +
           '<td>' + list[i].industry + '</td>' +

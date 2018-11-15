@@ -17,7 +17,7 @@
 	<title>报警信息列表</title>
 	<style>
 		body {margin: auto;}
-		*{ background: #f9f6f1; font-family: Arial, "微软雅黑"; }
+		*{ font-family: Arial, "微软雅黑"; }
 		.icon-plus, .icon-search { background: #2494f9; }
 		.btn_search, .page_btn { border-radius: 3px; border: none; color: white; padding: 0 10px; }
 		.btn_search { width: 80px; height: 30px; line-height: 30px; }
@@ -26,9 +26,16 @@
 		.tab { float: left; padding: 0 0; padding-top: 25px; }
 		.tab label { width: 80px; height: 30px; line-height: 30px; text-align: center; background: #454545; border-radius: 3px; color: white; cursor: pointer; }
 		.active { background: #2494f9 !important; }
+		#Member_Ratings {display: none;}
 	</style>
 </head>
 <body>
+	<div class="loadjy">
+		<div><span><i></i><i></i><i></i></span></div>
+	</div>
+	<div id="noTableData"> <img src="./images/two/7.1.png" alt="无数据">
+		<p>抱歉，没有数据啊...</p>
+	</div>
 	<ul>
 		<li class="tab">
 			<label id="btn-2" class="active">返回</label>
