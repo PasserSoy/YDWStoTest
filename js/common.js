@@ -236,3 +236,10 @@ window.onload = function () {
 		};
 	}, false);
 }
+// 固定小数位
+function fixNum(num,l=2){// num为传入数值,l为小数位数
+  if(String(num).indexOf('.')>-1){
+		num = num.toFixed(l)!=0?Number(num.toFixed(l)):0;
+  };
+  return num;
+}

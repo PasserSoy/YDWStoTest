@@ -35,10 +35,10 @@ function getStatisticsElectricData(deviceId) {
       var day_Arr = res.data;
       for (var i = 0; i < day_Arr.length; i++) {
         xAxis_Electric_name.push(day_Arr[i].time);
-        series_Electric_0.push(day_Arr[i].Electric_0.toFixed(2));
-        series_Electric_a.push(day_Arr[i].Electric_a.toFixed(2));
-        series_Electric_b.push(day_Arr[i].Electric_b.toFixed(2));
-        series_Electric_c.push(day_Arr[i].Electric_c.toFixed(2));
+        series_Electric_0.push(fixNum(day_Arr[i].Electric_0));
+        series_Electric_a.push(fixNum(day_Arr[i].Electric_a));
+        series_Electric_b.push(fixNum(day_Arr[i].Electric_b));
+        series_Electric_c.push(fixNum(day_Arr[i].Electric_c));
       }
     }
   });
@@ -74,10 +74,10 @@ function getStatisticsEricVoltageData(deviceId) {
       var day_Arr = res.data;
       for (var i = 0; i < day_Arr.length; i++) {
         xAxis_voltage_name.push(day_Arr[i].time);
-        series_voltage_0.push(day_Arr[i].voltage_0.toFixed(2));
-        series_voltage_a.push(day_Arr[i].voltage_a.toFixed(2));
-        series_voltage_b.push(day_Arr[i].voltage_b.toFixed(2));
-        series_voltage_c.push(day_Arr[i].voltage_c.toFixed(2));
+        series_voltage_0.push(fixNum(day_Arr[i].voltage_0));
+        series_voltage_a.push(fixNum(day_Arr[i].voltage_a));
+        series_voltage_b.push(fixNum(day_Arr[i].voltage_b));
+        series_voltage_c.push(fixNum(day_Arr[i].voltage_c));
       }
     }
   });

@@ -159,29 +159,6 @@ function organizationData(indexName, indexTimes, indexTimes_vol_xiebo, monitorFl
     series_Electric_b = [];
     series_Electric_c = [];
     series_Electric_0 = [];
-    // $.ajax({
-    //     url:rooturl+'/eric/getEricElectric.v1',
-    //     data:data,
-    //     type:'post',
-    //     success:function(res){
-    //         if (res.code == '0') {
-    //             var day_Arr = res.data;
-    //             if(day_Arr.length <= 0){
-    //                 $('#echarts_eric').append(nullDataDom);
-    //             }else{
-    //                 for(var i=0;i<day_Arr.length;i++){
-    //                     xAxis_Electric_name.push(day_Arr[i].time);
-    //                     series_Electric_a.push(day_Arr[i].Electric_a.toFixed(2));
-    //                     series_Electric_b.push(day_Arr[i].Electric_b.toFixed(2));
-    //                     series_Electric_c.push(day_Arr[i].Electric_c.toFixed(2));
-    //                     series_Electric_0.push(day_Arr[i].Electric_0.toFixed(2));
-    //                 }
-    //             };
-    //             Statistics_btn('eric');// 展示图表
-    //             echarts_eric.hideLoading();
-    //         }
-    //     }
-    // });
     POST('/eric/getEricElectric.v1', data, function (res) {
       if (res.code == '0') {
         var day_Arr = res.data;
@@ -190,10 +167,10 @@ function organizationData(indexName, indexTimes, indexTimes_vol_xiebo, monitorFl
         } else {
           for (var i = 0; i < day_Arr.length; i++) {
             xAxis_Electric_name.push(day_Arr[i].time);
-            series_Electric_a.push(day_Arr[i].Electric_a.toFixed(2));
-            series_Electric_b.push(day_Arr[i].Electric_b.toFixed(2));
-            series_Electric_c.push(day_Arr[i].Electric_c.toFixed(2));
-            series_Electric_0.push(day_Arr[i].Electric_0.toFixed(2));
+            series_Electric_a.push(fixNum(day_Arr[i].Electric_a));
+            series_Electric_b.push(fixNum(day_Arr[i].Electric_b));
+            series_Electric_c.push(fixNum(day_Arr[i].Electric_c));
+            series_Electric_0.push(fixNum(day_Arr[i].Electric_0));
           }
         };
         Statistics_btn('eric'); // 展示图表
@@ -219,10 +196,10 @@ function organizationData(indexName, indexTimes, indexTimes_vol_xiebo, monitorFl
         } else {
           for (var i = 0; i < day_Arr.length; i++) {
             xAxis_voltage_name.push(day_Arr[i].time);
-            series_voltage_a.push(day_Arr[i].voltage_a.toFixed(2));
-            series_voltage_b.push(day_Arr[i].voltage_b.toFixed(2));
-            series_voltage_c.push(day_Arr[i].voltage_c.toFixed(2));
-            series_voltage_0.push(day_Arr[i].voltage_0.toFixed(2));
+            series_voltage_a.push(fixNum(day_Arr[i].voltage_a));
+            series_voltage_b.push(fixNum(day_Arr[i].voltage_b));
+            series_voltage_c.push(fixNum(day_Arr[i].voltage_c));
+            series_voltage_0.push(fixNum(day_Arr[i].voltage_0));
           }
         };
         Statistics_btn('vol'); // 展示图表
@@ -253,9 +230,9 @@ function organizationData(indexName, indexTimes, indexTimes_vol_xiebo, monitorFl
               timeLength = day_Arr[i]['paramA'].length;
             }
             xAxis_Electric_name.push(day_Arr[i].timestamp);
-            series_Electric_a.push(day_Arr[i]['paramA'][indexTimes].toFixed(2));
-            series_Electric_b.push(day_Arr[i]['paramB'][indexTimes].toFixed(2));
-            series_Electric_c.push(day_Arr[i]['paramC'][indexTimes].toFixed(2));
+            series_Electric_a.push(fixNum(day_Arr[i]['paramA'][indexTimes]));
+            series_Electric_b.push(fixNum(day_Arr[i]['paramB'][indexTimes]));
+            series_Electric_c.push(fixNum(day_Arr[i]['paramC'][indexTimes]));
           }
         };
         getStatisticsElectricData_select(timeLength, indexTimes);
@@ -288,9 +265,9 @@ function organizationData(indexName, indexTimes, indexTimes_vol_xiebo, monitorFl
             }
             console.log("indexVol:" + 2);
             xAxis_voltage_name.push(day_Arr[i].timestamp);
-            series_voltage_a.push(day_Arr[i]['paramA'][indexTimes_vol_xiebo].toFixed(2));
-            series_voltage_b.push(day_Arr[i]['paramB'][indexTimes_vol_xiebo].toFixed(2));
-            series_voltage_c.push(day_Arr[i]['paramC'][indexTimes_vol_xiebo].toFixed(2));
+            series_voltage_a.push(fixNum(day_Arr[i]['paramA'][indexTimes_vol_xiebo]));
+            series_voltage_b.push(fixNum(day_Arr[i]['paramB'][indexTimes_vol_xiebo]));
+            series_voltage_c.push(fixNum(day_Arr[i]['paramC'][indexTimes_vol_xiebo]));
           }
         };
         getStatisticsEricVoltageData_select(timeLength, indexTimes_vol_xiebo);

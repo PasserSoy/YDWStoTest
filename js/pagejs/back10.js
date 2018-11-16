@@ -330,7 +330,7 @@ $(function () {
     var gdyTr = '';
     if (dataCopy.maxValueVoltage.length > 0) {
       dataCopy.maxValueVoltage.forEach(x => { // 遍历生成对应的td结构
-        x.phase.forEach(y => y.temper = ((y.temper - 500) / 10).toFixed(2)); // 避免渲染时倒序
+        x.phase.forEach(y => y.temper = fixNum((y.temper-500)/10)); // 避免渲染时倒序
         x.phase.forEach((y, i) => { // 遍历过电压保护器下的相位数据
           // console.log('y')
           // console.log(y)
@@ -407,9 +407,9 @@ $(function () {
         _b = JSON.parse(JSON.stringify(_a)), // B相数据
         _c = JSON.parse(JSON.stringify(_a)); // C相数据
       for (var i in x) {
-        if (i.indexOf('_a') > -1) _a[i.slice(0, -2)] = x[i].toFixed(2);
-        if (i.indexOf('_b') > -1) _b[i.slice(0, -2)] = x[i].toFixed(2);
-        if (i.indexOf('_c') > -1) _c[i.slice(0, -2)] = x[i].toFixed(2);
+        if (i.indexOf('_a') > -1) _a[i.slice(0, -2)] = fixNum(x[i]);
+        if (i.indexOf('_b') > -1) _b[i.slice(0, -2)] = fixNum(x[i]);
+        if (i.indexOf('_c') > -1) _c[i.slice(0, -2)] = fixNum(x[i]);
       };
       var res = [];
       res.push(_a, _b, _c);
@@ -428,9 +428,9 @@ $(function () {
         _b = JSON.parse(JSON.stringify(_a)), // B相数据
         _c = JSON.parse(JSON.stringify(_a)); // C相数据
       for (var i in x) {
-        if (i.indexOf('_a') > -1) _a[i.slice(0, -2)] = x[i].toFixed(2);
-        if (i.indexOf('_b') > -1) _b[i.slice(0, -2)] = x[i].toFixed(2);
-        if (i.indexOf('_c') > -1) _c[i.slice(0, -2)] = x[i].toFixed(2);
+        if (i.indexOf('_a') > -1) _a[i.slice(0, -2)] = fixNum(x[i]);
+        if (i.indexOf('_b') > -1) _b[i.slice(0, -2)] = fixNum(x[i]);
+        if (i.indexOf('_c') > -1) _c[i.slice(0, -2)] = fixNum(x[i]);
       };
       var res = [];
       res.push(_a, _b, _c);
@@ -439,19 +439,6 @@ $(function () {
     // ./处理过电压保护器数据 maxValueVoltage
 
     // 处理温度采集器数据 maxValueTemper
-    // data.maxValueTemper= data.maxValueTemper!=undefined?data.maxValueTemper:[];
-    // data.maxValueTemper.forEach((x,j) => {
-    //   var n = x.positionName.slice(-2,-1).toUpperCase();
-    //   switch(n){
-    //     case 'A':x.a=((x.temper-500)/10).toFixed(2);x.b='';x.c='';break;
-    //     case 'B':x.a='';x.b=((x.temper-500)/10).toFixed(2);x.c='';break;
-    //     case 'C':x.a='';x.b='';x.c=((x.temper-500)/10).toFixed(2);break;
-    //   };
-    // });
-    // console.log('data.maxValueTemper')
-    // console.log(data.maxValueTemper)
-
-    // 新参数
     data.regroupMaxValueTemper = data.regroupMaxValueTemper != undefined ? data.regroupMaxValueTemper : [];
     data.regroupMaxValueTemper.forEach(x => {
       x.temper_a = x.temper_a != undefined ? x.temper_a : '';

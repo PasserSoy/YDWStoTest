@@ -26,6 +26,7 @@ var data = {
 init(data);
 
 var allCount = 0; // 是否有数据
+var htmlHeight = '510px';
 function init(data) {
   POST('/sys/monitorStation/queryMonitorStation.v1', data, function (res) {
     // console.log(data)
@@ -98,7 +99,8 @@ function init(data) {
 
       }
 
-      $('.allList_ul').append(context)
+      $('.allList_ul').append(context);
+      $('html').height(htmlHeight);
     } else {
       $('#allList').css('display', 'none');
       $('#map').css('display', 'none');
@@ -137,6 +139,9 @@ $('.span1').click(function () {
   $('#map').css('display', 'block')
   $('#allList').css('display', 'none')
   if (allCount != 0) $('#noTableData').css('display', 'none');
+  window.parent.$('#iframepage').css({
+    'min-height':  htmlHeight
+  });
 })
 
 $('.span2').click(function () {
@@ -144,7 +149,12 @@ $('.span2').click(function () {
   $('.span1').removeClass('active')
   $('#allList').css('display', 'block')
   $('#map').css('display', 'none')
-  if (allCount != 0) $('#noTableData').css('display', 'none');
+  if (allCount != 0) $('#noTableData').css('display', 'none');  
+  $('html').height('auto');
+  var newHeight = $('html').height(); /*编辑时同步iframe高度*/
+  window.parent.$('#iframepage').css({
+    'min-height': newHeight + 30 + 'px'
+  });
 })
 
 function link(obj) {
@@ -196,17 +206,17 @@ var requestFullScreen = function (element) {
 $(function () {
   /*地图铺满*/
   $(window.parent.document).find('.nav').addClass('navfull');
-  var _h1 = $(window.parent.document).find('.nav').outerHeight();
-  var _h2 = $('.box_title').outerHeight();
-  $('#map').outerHeight(_h1 - _h2);
-  $('#map').outerHeight(720);
+  // var _h1 = $(window.parent.document).find('.nav').outerHeight();
+  // var _h2 = $('.box_title').outerHeight();
+  // $('#map').outerHeight(_h1 - _h2);
+  // $('#map').outerHeight(720);
 
-  $(window).resize(function () {
-    var _h1 = $(window.parent.document).find('.nav').outerHeight();
-    var _h2 = $('.box_title').outerHeight();
-    $('#map').outerHeight(_h1 - _h2);
-    $('#map').outerHeight(720);
-  })
+  // $(window).resize(function () {
+  //   var _h1 = $(window.parent.document).find('.nav').outerHeight();
+  //   var _h2 = $('.box_title').outerHeight();
+  //   $('#map').outerHeight(_h1 - _h2);
+  //   $('#map').outerHeight(720);
+  // })
 
   $('.allList_ul').on('click', 'li', function () {
     $(window.parent.document).find('.nav').removeClass('navfull');

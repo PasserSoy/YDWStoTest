@@ -139,13 +139,7 @@ function getStatisticsData() {
       // 绑定有效值
       for (var i in day_Arr) {
         if (i.indexOf('val') > -1) {
-          var val = 0;
-          if (Array.isArray(day_Arr[i])) {
-            var val = day_Arr[i][1].toFixed(2) == 0 ? 0 : day_Arr[i][1].toFixed(2);
-          } else {
-            var val = day_Arr[i].toFixed(2) == 0 ? 0 : day_Arr[i].toFixed(2);
-          }
-          $(`.valid span.${i}`).text(val);
+          $(`.valid span.${i}`).text(fixNum(day_Arr[i][1]));
         }
       }
       if (day_Arr != null) { // 数组存在
@@ -229,13 +223,7 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
       formatter: function (params) {
         var text = `<p class="date"><i>时间: </i><em>${params[0].name} ms</em></p>`;
         for (var x of params) {
-          var val = 0;
-          if (String(x.value / 1000).indexOf('.') > -1) {
-            val = (x.value / 1000).toFixed(2) != 0 ? (x.value / 1000).toFixed(2) : 0;
-          } else {
-            val = x.value / 1000;
-          };
-          text += `<p><span style="background-color:${x.color}"></span><i>${x.seriesName}: </i><em>${val} kV</em></p>`
+          text += `<p><span style="background-color:${x.color}"></span><i>${x.seriesName}: </i><em>${fixNum(x.value / 1000)} kV</em></p>`
         };
         text = `<div class="echartData">${text}</div>`;
         return text;
@@ -303,13 +291,7 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
       formatter: function (params) {
         var text = `<p class="date"><i>时间: </i><em>${params[0].name} ms</em></p>`;
         for (var x of params) {
-          var val = 0;
-          if (String(x.value).indexOf('.') > -1) {
-            val = (x.value).toFixed(2) != 0 ? (x.value).toFixed(2) : 0;
-          } else {
-            val = x.value;
-          };
-          text += `<p><span style="background-color:${x.color}"></span><i>${x.seriesName}: </i><em>${val} V</em></p>`
+          text += `<p><span style="background-color:${x.color}"></span><i>${x.seriesName}: </i><em>${fixNum(x.value)} V</em></p>`
         };
         text = `<div class="echartData">${text}</div>`;
         return text;
@@ -362,13 +344,7 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
       formatter: function (params) {
         var text = `<p class="date"><i>时间: </i><em>${params[0].name} ms</em></p>`;
         for (var x of params) {
-          var val = 0;
-          if (String(x.value).indexOf('.') > -1) {
-            val = (x.value).toFixed(2) != 0 ? (x.value).toFixed(2) : 0;
-          } else {
-            val = x.value;
-          };
-          text += `<p><span style="background-color:${x.color}"></span><i>${x.seriesName}: </i><em>${val} A</em></p>`
+          text += `<p><span style="background-color:${x.color}"></span><i>${x.seriesName}: </i><em>${fixNum(x.value)} A</em></p>`
         };
         text = `<div class="echartData">${text}</div>`;
         return text;
@@ -433,13 +409,7 @@ function Statistics_btn(xAxis_Wave_UA, xAxis_Wave_UB, xAxis_Wave_UC, xAxis_Wave_
       formatter: function (params) {
         var text = `<p class="date"><i>时间: </i><em>${params[0].name} ms</em></p>`;
         for (var x of params) {
-          var val = 0;
-          if (String(x.value).indexOf('.') > -1) {
-            val = (x.value).toFixed(2) != 0 ? (x.value).toFixed(2) : 0;
-          } else {
-            val = x.value;
-          };
-          text += `<p><span style="background-color:${x.color}"></span><i>${x.seriesName}: </i><em>${val} A</em></p>`
+          text += `<p><span style="background-color:${x.color}"></span><i>${x.seriesName}: </i><em>${fixNum(x.value)} A</em></p>`
         };
         text = `<div class="echartData">${text}</div>`;
         return text;

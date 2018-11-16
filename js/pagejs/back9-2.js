@@ -174,9 +174,9 @@ function organizationData(index, monitorFlag, timeStart, timeEnd) {
         } else {
           for (var i = 0; i < day_Arr.length; i++) {
             xAxis_time_name.push(day_Arr[i].time);
-            series_temper_a.push(day_Arr[i].temper_a.toFixed(2));
-            series_temper_b.push(day_Arr[i].temper_b.toFixed(2));
-            series_temper_c.push(day_Arr[i].temper_c.toFixed(2));
+            series_temper_a.push(fixNum(day_Arr[i].temper_a));
+            series_temper_b.push(fixNum(day_Arr[i].temper_b));
+            series_temper_c.push(fixNum(day_Arr[i].temper_c));
           }
         };
         Statistics_btn('temp'); // 展示图表
@@ -200,9 +200,9 @@ function organizationData(index, monitorFlag, timeStart, timeEnd) {
         } else {
           for (var i = 0; i < day_Arr.length; i++) {
             xAxis_time_name.push(day_Arr[i].time);
-            series_humidity_a.push(day_Arr[i].humidity_a.toFixed(2));
-            series_humidity_b.push(day_Arr[i].humidity_b.toFixed(2));
-            series_humidity_c.push(day_Arr[i].humidity_c.toFixed(2));
+            series_humidity_a.push(fixNum(day_Arr[i].humidity_a));
+            series_humidity_b.push(fixNum(day_Arr[i].humidity_b));
+            series_humidity_c.push(fixNum(day_Arr[i].humidity_c));
           }
         };
         Statistics_btn('humidity'); // 展示图表
@@ -224,7 +224,7 @@ function organizationData(index, monitorFlag, timeStart, timeEnd) {
         } else {
           for (var i = 0; i < day_Arr.length; i++) {
             xAxis_time_name.push(day_Arr[i].time);
-            series_leakElec_value.push(day_Arr[i].electric.toFixed(2));
+            series_leakElec_value.push(fixNum(day_Arr[i].electric));
           }
         };
         Statistics_btn('leakElec'); // 展示图表
@@ -277,7 +277,7 @@ function organizationData(index, monitorFlag, timeStart, timeEnd) {
             }).replace(/\//g, '-');
             var _val = (day_Arr[i].temper - 500) / 10;
             xAxis_time_name.push(_time);
-            series_newtemper_value.push(_val.toFixed(2));
+            series_newtemper_value.push(fixNum(_val));
           }
         };
         Statistics_btn('newtemper'); // 展示图表
